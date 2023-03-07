@@ -6,26 +6,26 @@ import Footer from '../components/Footer';
 
 export default function Home({ navigation, GlobalState }) {
     const {toDoList, setToDoList, task, setTask, setChosenTask} = GlobalState;
+    console.log("wutang")
     useEffect(() => {
-        //setToDoList(prevState => [...prevState])
+        setToDoList(prevState => [...prevState])
     }, [])
 
     const renderItem = ({item}) => {
         return(
             <TouchableOpacity
             style = {styles.task}
-            onPress = {() => handleChooseTask()}
+            onPress = {() => handleChooseTask}
             >    
                 <Text>{item.task}</Text>
             </TouchableOpacity>
         )
     }
 
-    const hanldeSavedTask = () =>{
+    const handleSaveTask = () =>{
         const index = toDoList.length + 1;
-
+        console.log(index + " " + task);
         setToDoList(prevState => [...prevState, {id: index, task: task}])
-
         setTask('');
     }
 
@@ -46,7 +46,7 @@ export default function Home({ navigation, GlobalState }) {
             />
             <TouchableOpacity 
             style={styles.button}
-            onPress={() =>hanldeSavedTask}
+            onPress={handleSaveTask}
             >
                 <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
